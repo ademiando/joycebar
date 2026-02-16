@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOYCE BAR | Cinematic Menu</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,600&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark: #020617;
+            --cream: #F4F1EA;
+        }
+        
+        body { 
+            background-color: var(--dark); 
+            color: var(--cream); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow-x: hidden; 
+        }
+        
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        
+        /* Horizontal Scroll Container */
+        .horizontal-wrapper {
+            width: 400%; /* 4 slides x 100% */
+            height: 100vh;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .menu-panel {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            border-right: 1px solid rgba(255,255,255,0.1); /* Separator tipis */
+        }
+
+        .menu-panel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s ease;
+        }
+
+        .menu-panel:hover img { transform: scale(1.05); }
+
+        .panel-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 4rem 2rem;
+            background: linear-gradient(to top, rgba(2,6,23,0.95), transparent);
+            z-index: 10;
+        }
+
+        /* Tombol Premium */
+        .btn-app {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(255,255,255,0.02);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            font-weight: 700;
+        }
+
+        .btn-app:hover {
+            background: var(--gold);
+            color: var(--dark);
+            border-color: var(--gold);
+        }
+
+        /* Map Box */
+        .map-box {
+            height: 200px;
+            width: 100%;
+            border: 1px solid var(--gold);
+            filter: grayscale(100%) invert(90%) contrast(120%);
+            transition: filter 0.5s;
+        }
+        .map-box:hover { filter: none; }
+
+        /* Social Icons */
+        .social-link {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .social-link:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi Atas Sederhana -->
+    <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center mix-blend-difference">
+        <div class="flex flex-col">
+            <span class="text-2xl font-bold uppercase tracking-tighter text-white">Joyce<span class="text-[#D4AF37]">Bar</span></span>
+            <span class="text-[9px] uppercase tracking-[0.4em] opacity-70">Authentic Persian</span>
+        </div>
+        <div class="hidden md:block text-[10px] uppercase tracking-widest border-b border-[#D4AF37] pb-1">
+            Scroll Down &rarr;
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section class="h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-40">
+            <!-- Background dari folder assets -->
+            <!-- Tambahkan onerror agar tetap tampil cantik jika file lokal belum ada -->
+            <img src="assets/background.jpg" onerror="this.src='https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1974&auto=format&fit=crop'" class="w-full h-full object-cover" alt="Joyce Bar Interior">
+        </div>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="font-serif italic text-6xl md:text-9xl mb-4 leading-none">Fresh & <br> <span class="text-[#D4AF37]">Tasty.</span></h1>
+            <p class="text-sm md:text-lg opacity-80 max-w-lg mx-auto leading-relaxed mb-8">
+                Perpaduan rasa tradisional Persia dengan gaya hidup sehat modern di Bali.
+            </p>
+            <div class="animate-bounce mt-10 opacity-50">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Horizontal Scroll Menu (FULL WIDTH NO SPACE) -->
+    <div id="scroll-container" class="overflow-hidden">
+        <div class="horizontal-wrapper">
+            
+            <!-- Menu 1 -->
+            <div class="menu-panel">
+                <!-- Menu 1 dari folder assets -->
+                <img src="assets/menu1.jpg" onerror="this.src='https://raw.githubusercontent.com/Joycebar/assets/main/1000386289.jpg'" alt="Western Persian">
+                <div class="panel-content">
+                    <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.3em] block mb-2">Menu 01</span>
+                    <h2 class="text-4xl md:text-6xl font-serif italic mb-2">Persian Heritage</h2>
+                    <p class="opacity-70 max-w-md text-sm">Saffron Rice & Lubiapolo. Cita rasa asli dari rempah pilihan.</p>
+                </div>
+            </div>
+
+            <!-- Menu 2 -->
+            <div class="menu-panel">
+                <!-- Menu 2 dari folder assets -->
+                <img src="assets/menu2.jpg" onerror="this.src='https://raw.githubusercontent.com/Joycebar/assets/main/1000386287.jpg'" alt="Indo Fusion">
+                <div class="panel-content">
+                    <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.3em] block mb-2">Menu 02</span>
+                    <h2 class="text-4xl md:text-6xl font-serif italic mb-2">Indonesian Fusion</h2>
+                    <p class="opacity-70 max-w-md text-sm">Nasi Goreng & Mie Series dengan standar bahan organik premium.</p>
+                </div>
+            </div>
+
+            <!-- Menu 3 -->
+            <div class="menu-panel">
+                <!-- Menu 3 dari folder assets -->
+                <img src="assets/menu3.jpg" onerror="this.src='https://raw.githubusercontent.com/Joycebar/assets/main/1000386288.jpg'" alt="Healthy">
+                <div class="panel-content">
+                    <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.3em] block mb-2">Menu 03</span>
+                    <h2 class="text-4xl md:text-6xl font-serif italic mb-2">Healthy Bowls</h2>
+                    <p class="opacity-70 max-w-md text-sm">Smoothies & Salad Wraps. Energi segar untuk hari Anda.</p>
+                </div>
+            </div>
+
+            <!-- Menu 4 -->
+            <div class="menu-panel">
+                <!-- Menu 4 dari folder assets -->
+                <img src="assets/menu4.jpg" onerror="this.src='https://raw.githubusercontent.com/Joycebar/assets/main/1000386290.jpg'" alt="Drinks">
+                <div class="panel-content">
+                    <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.3em] block mb-2">Menu 04</span>
+                    <h2 class="text-4xl md:text-6xl font-serif italic mb-2">Botanical Sips</h2>
+                    <p class="opacity-70 max-w-md text-sm">Artisan Coffee & Cold Pressed Juice murni.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 3. Footer / Contact / Location -->
+    <section class="bg-[#050A18] px-6 py-20 border-t border-[#D4AF37]/20 relative z-20">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            
+            <!-- Kiri: Order Buttons & Social -->
+            <div>
+                <h3 class="font-serif italic text-5xl mb-8">Order Now.</h3>
+                
+                <!-- App Buttons -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                    <a href="https://wa.me/6281804043131" target="_blank" class="btn-app col-span-1 sm:col-span-2 bg-[#D4AF37] text-[#020617] border-[#D4AF37]">
+                        <i class="fab fa-whatsapp text-lg"></i> WhatsApp Direct
+                    </a>
+                    <a href="https://gofood.co.id/bali/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-cdfef995-232d-42db-9f10-2c4cf897f8e8" target="_blank" class="btn-app">
+                        <i class="fas fa-motorcycle text-lg"></i> GoFood
+                    </a>
+                    <a href="https://food.grab.com/id/en/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-delivery/6-C3LVRTVKSAUVEJ" target="_blank" class="btn-app">
+                        <i class="fas fa-bicycle text-lg"></i> GrabFood
+                    </a>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex gap-4">
+                    <a href="https://instagram.com/joycebarbali" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/JoyceBar" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://tiktok.com/@joycebar" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Kanan: Lokasi & Map Kecil -->
+            <div class="text-right flex flex-col items-end">
+                <h3 class="font-serif italic text-5xl mb-8">Visit Us.</h3>
+                <p class="text-sm opacity-70 mb-1">Jl. Diponegoro, Denpasar, Bali.</p>
+                <p class="text-sm opacity-70 mb-6 uppercase tracking-widest text-[#D4AF37]">Senin - Sabtu | 10.30 - 22.00</p>
+                
+                <!-- Kotak Kecil Maps -->
+                <div class="map-box rounded-sm overflow-hidden">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.331570773822!2d115.21528437582502!3d-8.659955391388047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2409748b9f041%3A0x633d453b3b42938!2sJl.%20Diponegoro%2C%20Dauh%20Puri%20Kaja%2C%20Kec.%20Denpasar%20Utara%2C%20Kota%20Denpasar%2C%20Bali!5e0!3m2!1sid!2sid!4v1715678234321!5m2!1sid!2sid" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+                <a href="https://maps.app.goo.gl/axWq39TST5ZJD9Ns5" target="_blank" class="mt-4 text-[10px] font-bold uppercase tracking-widest border-b border-[#D4AF37] pb-1 hover:text-[#D4AF37]">
+                    Buka di Google Maps
+                </a>
+            </div>
+
+        </div>
+        
+        <div class="text-center mt-20 pt-10 border-t border-white/5 opacity-30 text-[9px] uppercase tracking-[0.5em]">
+            &copy; 2024 Joyce Bar Bali
+        </div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Horizontal Scroll Logic
+        let sections = gsap.utils.toArray(".menu-panel");
+
+        gsap.to(sections, {
+            xPercent: -100 * (sections.length - 1), // Geser sejauh jumlah slide - 1
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#scroll-container",
+                pin: true, // Layar terkunci
+                scrub: 1,  // Halus mengikuti jari/mouse
+                snap: 1 / (sections.length - 1), // Otomatis pas di tengah gambar
+                // Durasi scroll = lebar container
+                end: () => "+=" + document.querySelector(".horizontal-wrapper").offsetWidth
+            }
+        });
+    </script>
+</body>
+</html>
+
+
