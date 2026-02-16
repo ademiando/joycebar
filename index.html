@@ -63,41 +63,24 @@
         .image-container {
             position: relative;
             width: 45vw;
-            height: 85vh;
+            height: 90vh; 
             overflow: hidden;
             border-left: 1px solid var(--gold);
-            background: #111;
+            background: #000;
         }
 
+        /* Foto Menu Utuh */
         .image-container img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            transform: scale(1.1);
+            object-fit: contain; 
+            object-position: top;
         }
 
         .content-overlay {
             width: 45vw;
             padding: 0 5vw;
             z-index: 10;
-        }
-
-        /* Menu List Styling from Image */
-        .menu-list {
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-            opacity: 0.6;
-        }
-
-        .menu-category {
-            color: var(--gold);
-            font-weight: 900;
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
-            display: block;
         }
 
         /* Gold Luxury Buttons */
@@ -156,10 +139,10 @@
             transform: scale(1.5);
         }
 
-        /* Map styling */
+        /* Map styling Landscape */
         .map-wrapper {
             width: 100%;
-            height: 60vh;
+            height: 40vh;
             border: 1px solid rgba(212, 175, 55, 0.2);
             position: relative;
             overflow: hidden;
@@ -171,7 +154,7 @@
 
         @media (max-width: 1024px) {
             .editorial-section { flex-direction: column !important; padding-top: 15vh; }
-            .image-container { width: 90vw; height: 50vh; order: 1 !important; }
+            .image-container { width: 90vw; height: 70vh; order: 1 !important; }
             .content-overlay { width: 90vw; padding: 3rem 0; order: 2 !important; text-align: left !important; }
             .hero-title { font-size: 18vw; }
         }
@@ -210,7 +193,7 @@
         <!-- Section 1: Entrance -->
         <section class="min-h-screen flex flex-col justify-center px-[10vw] relative" id="entrance">
             <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
-                <img src="assets/background.jpg" class="w-full h-full object-cover grayscale" alt="Interior">
+                <img src="assets/background.jpg" class="w-full h-full object-cover grayscale" alt="Interior Joyce Bar">
             </div>
             
             <h1 class="hero-title">FRESH<br><span class="serif-vogue text-gold">Tasty.</span></h1>
@@ -223,10 +206,10 @@
             </div>
         </section>
 
-        <!-- Section 2: Menu 1 (Persian/Western) -->
+        <!-- Section 2: Menu 1 -->
         <section class="editorial-section" id="menu1">
             <div class="image-container">
-                <img src="assets/menu1.jpg" alt="Heritage" class="parallax-img">
+                <img src="assets/menu1.jpg" alt="Menu Heritage Joyce Bar" class="parallax-img">
             </div>
             <div class="content-overlay">
                 <span class="text-gold text-[10px] tracking-[0.8em] uppercase mb-6 block">01 — Heritage</span>
@@ -237,42 +220,26 @@
             </div>
         </section>
 
-        <!-- Section 3: Menu 2 (Indonesia Food - Based on Uploaded Image) -->
+        <!-- Section 3: Menu 2 (Indonesia Food - Clean Layout) -->
         <section class="editorial-section" id="menu2">
             <div class="content-overlay md:text-right md:order-1">
                 <span class="text-gold text-[10px] tracking-[0.8em] uppercase mb-6 block">02 — Fusion</span>
                 <h2 class="serif-vogue text-6xl md:text-7xl mb-8">Indonesia <br> Food.</h2>
                 <div class="h-[1px] w-20 bg-gold/50 mb-8 md:ml-auto"></div>
                 
-                <!-- Menu Items from Image -->
-                <div class="menu-list mb-10">
-                    <span class="menu-category">Nasi Goreng</span>
-                    <p>Mawut Joyce — 25K</p>
-                    <p>Vegetarian — 25K</p>
-                    <p>Premium — 30K</p>
-                    
-                    <span class="menu-category">Mie & Kwetiau</span>
-                    <p>Mie Goreng Sultan — 25K</p>
-                    <p>Kwetiau Royale Joyce — 25K</p>
-                    <p>Kwetiau Supreme Joyce — 30K</p>
-
-                    <span class="menu-category">Ayam Goreng</span>
-                    <p>Saus Lada Hitam — 25K</p>
-                    <p>Saus Asam Manis — 25K</p>
-                    <p>Saus BBQ — 25K</p>
-                </div>
+                <p class="text-xs opacity-40 leading-loose mb-10 max-w-sm md:ml-auto">Varian hidangan lokal favorit dengan sentuhan premium Joyce Bar.</p>
 
                 <a href="https://gofood.co.id/bali/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-cdfef995-232d-42db-9f10-2c4cf897f8e8" target="_blank" class="gold-btn">GoFood Bali</a>
             </div>
             <div class="image-container md:order-2">
-                <img src="assets/menu2.jpg" alt="Indonesian Menu" class="parallax-img">
+                <img src="assets/menu2.jpg" alt="Menu Indonesia Food Joyce Bar" class="parallax-img">
             </div>
         </section>
 
         <!-- Section 4: Menu 3 -->
         <section class="editorial-section" id="menu3">
             <div class="image-container">
-                <img src="assets/menu3.jpg" alt="Botanical" class="parallax-img">
+                <img src="assets/menu3.jpg" alt="Menu Healthy Snack Joyce Bar" class="parallax-img">
             </div>
             <div class="content-overlay">
                 <span class="text-gold text-[10px] tracking-[0.8em] uppercase mb-6 block">03 — Botanical</span>
@@ -293,13 +260,13 @@
                 <a href="https://wa.me/6281804043131" target="_blank" class="gold-btn">Order Now</a>
             </div>
             <div class="image-container md:order-2">
-                <img src="assets/menu4.jpg" alt="Beverage" class="parallax-img">
+                <img src="assets/menu4.jpg" alt="Menu Minuman Joyce Bar" class="parallax-img">
             </div>
         </section>
 
         <!-- Section 6: Location & Connect -->
         <section class="min-h-screen py-32 px-[10vw]" id="location">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mb-32">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mb-16">
                 <div>
                     <h3 class="serif-vogue text-6xl text-gold mb-12">Connect.</h3>
                     <div class="flex flex-col gap-8">
@@ -311,10 +278,6 @@
                             <span class="text-[10px] uppercase tracking-[0.4em] text-white">Instagram @joycebarbali</span>
                             <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform text-gold"></i>
                         </a>
-                        <div class="flex gap-10 mt-4">
-                            <a href="https://gofood.co.id/bali/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-cdfef995-232d-42db-9f10-2c4cf897f8e8" target="_blank" class="text-gold text-[10px] uppercase font-bold border-b border-gold/30 text-decoration-none">GoFood</a>
-                            <a href="https://food.grab.com/id/en/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-delivery/6-C3LVRTVKSAUVEJ" target="_blank" class="text-gold text-[10px] uppercase font-bold border-b border-gold/30 text-decoration-none">GrabFood</a>
-                        </div>
                     </div>
                 </div>
                 
@@ -326,7 +289,7 @@
                 </div>
             </div>
 
-            <!-- Google Maps Implementation: Joyce Bar, Genteng Biru -->
+            <!-- Google Maps Landscape -->
             <div class="map-wrapper">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.3164923723377!2d115.21387677461946!3d-8.661413888145244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2409714856a93%3A0xc68291410427806d!2sJoycebar!5e0!3m2!1sid!2sid!4v1715678234321!5m2!1sid!2sid" 
@@ -353,28 +316,6 @@
               .to("#loader span", { y: "0%", duration: 1, ease: "power4.out" })
               .to("#loader", { y: "-100%", duration: 1.5, ease: "power4.inOut", delay: 0.5 })
               .from(".hero-title", { y: 200, skewY: 10, duration: 1.5, ease: "power4.out" }, "-=0.5");
-        });
-
-        // Parallax Images & Reveal 
-        gsap.utils.toArray(".parallax-img").forEach(img => {
-            gsap.to(img, {
-                yPercent: -20,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: img.parentElement,
-                    scrub: true
-                }
-            });
-
-            gsap.from(img.parentElement, {
-                width: 0,
-                duration: 2,
-                ease: "power4.inOut",
-                scrollTrigger: {
-                    trigger: img.parentElement,
-                    start: "top 85%"
-                }
-            });
         });
 
         // Navigation Active State Update
