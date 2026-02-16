@@ -32,6 +32,10 @@
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         
         /* Horizontal Scroll Container */
+        #scroll-container {
+            background: #000;
+        }
+
         .horizontal-wrapper {
             width: 400%; /* 4 slides x 100% */
             height: 100vh;
@@ -43,27 +47,19 @@
             width: 100vw;
             height: 100vh;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            border-right: 1px solid rgba(255,255,255,0.1); /* Separator tipis */
+            background: #000;
         }
 
+        /* Perbaikan ukuran agar tidak terpotong */
         .menu-panel img {
-            width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 1.5s ease;
-        }
-
-        .menu-panel:hover img { transform: scale(1.05); }
-
-        .panel-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
             width: 100%;
-            padding: 4rem 2rem;
-            background: linear-gradient(to top, rgba(2,6,23,0.95), transparent);
-            z-index: 10;
+            object-fit: contain; /* Memastikan foto menu panjang terlihat utuh */
+            transition: transform 1.5s ease;
         }
 
         /* Tombol Premium */
@@ -117,95 +113,57 @@
 </head>
 <body>
 
-    <!-- Navigasi Atas Sederhana -->
+    <!-- Navigasi Atas -->
     <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center mix-blend-difference">
         <div class="flex flex-col">
             <span class="text-2xl font-bold uppercase tracking-tighter text-white">Joyce<span class="text-[#D4AF37]">Bar</span></span>
             <span class="text-[9px] uppercase tracking-[0.4em] opacity-70">Authentic Persian</span>
-        </div>
-        <div class="hidden md:block text-[10px] uppercase tracking-widest border-b border-[#D4AF37] pb-1">
-            Scroll Down &rarr;
         </div>
     </nav>
 
     <!-- 1. Hero Section -->
     <section class="h-screen flex items-center justify-center relative overflow-hidden">
         <div class="absolute inset-0 opacity-40">
-            <!-- Background dari folder assets -->
-            <!-- Tambahkan onerror agar tetap tampil cantik jika file lokal belum ada -->
-            <img src="assets/background.jpg" onerror="this.src='https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1974&auto=format&fit=crop'" class="w-full h-full object-cover" alt="Joyce Bar Interior">
+            <img src="assets/background.jpg" class="w-full h-full object-cover" alt="Background">
         </div>
         <div class="relative z-10 text-center px-4">
             <h1 class="font-serif italic text-6xl md:text-9xl mb-4 leading-none">Fresh & <br> <span class="text-[#D4AF37]">Tasty.</span></h1>
             <p class="text-sm md:text-lg opacity-80 max-w-lg mx-auto leading-relaxed mb-8">
                 Perpaduan rasa tradisional Persia dengan gaya hidup sehat modern di Bali.
             </p>
-            <div class="animate-bounce mt-10 opacity-50">
-                <i class="fas fa-chevron-down text-2xl"></i>
-            </div>
         </div>
     </section>
 
-    <!-- 2. Horizontal Scroll Menu (FULL WIDTH NO SPACE) -->
-    <div id="scroll-container" class="overflow-hidden">
+    <!-- 2. Horizontal Scroll Menu -->
+    <div id="scroll-container">
         <div class="horizontal-wrapper">
             
-            <!-- Menu 1 -->
             <div class="menu-panel">
-                <!-- Menu 1 dari folder assets -->
-                <img src="assets/menu1.jpg" onerror="this.src='https://raw.githubusercontent.com/Joycebar/assets/main/1000386289.jpg'" alt="Western Persian">
-                <div class="panel-content">
-                    <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.3em] block mb-2">Menu 01</span>
-                    <h2 class="text-4xl md:text-6xl font-serif italic mb-2">Persian Heritage</h2>
-                    <p class="opacity-70 max-w-md text-sm">Saffron Rice & Lubiapolo. Cita rasa asli dari rempah pilihan.</p>
-                </div>
+                <img src="assets/menu1.jpg" alt="Menu 1">
             </div>
 
-            <!-- Menu 2 -->
             <div class="menu-panel">
-                <!-- Menu 2 dari folder assets -->
-                <img src="assets/menu2.jpg" onerror="this.src='https://raw.githubusercontent.com/Joycebar/assets/main/1000386287.jpg'" alt="Indo Fusion">
-                <div class="panel-content">
-                    <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.3em] block mb-2">Menu 02</span>
-                    <h2 class="text-4xl md:text-6xl font-serif italic mb-2">Indonesian Fusion</h2>
-                    <p class="opacity-70 max-w-md text-sm">Nasi Goreng & Mie Series dengan standar bahan organik premium.</p>
-                </div>
+                <img src="assets/menu2.jpg" alt="Menu 2">
             </div>
 
-            <!-- Menu 3 -->
             <div class="menu-panel">
-                <!-- Menu 3 dari folder assets -->
-                <img src="assets/menu3.jpg" onerror="this.src='https://raw.githubusercontent.com/Joycebar/assets/main/1000386288.jpg'" alt="Healthy">
-                <div class="panel-content">
-                    <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.3em] block mb-2">Menu 03</span>
-                    <h2 class="text-4xl md:text-6xl font-serif italic mb-2">Healthy Bowls</h2>
-                    <p class="opacity-70 max-w-md text-sm">Smoothies & Salad Wraps. Energi segar untuk hari Anda.</p>
-                </div>
+                <img src="assets/menu3.jpg" alt="Menu 3">
             </div>
 
-            <!-- Menu 4 -->
             <div class="menu-panel">
-                <!-- Menu 4 dari folder assets -->
-                <img src="assets/menu4.jpg" onerror="this.src='https://raw.githubusercontent.com/Joycebar/assets/main/1000386290.jpg'" alt="Drinks">
-                <div class="panel-content">
-                    <span class="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.3em] block mb-2">Menu 04</span>
-                    <h2 class="text-4xl md:text-6xl font-serif italic mb-2">Botanical Sips</h2>
-                    <p class="opacity-70 max-w-md text-sm">Artisan Coffee & Cold Pressed Juice murni.</p>
-                </div>
+                <img src="assets/menu4.jpg" alt="Menu 4">
             </div>
 
         </div>
     </div>
 
-    <!-- 3. Footer / Contact / Location -->
-    <section class="bg-[#050A18] px-6 py-20 border-t border-[#D4AF37]/20 relative z-20">
+    <!-- 3. Footer / Contact / Social -->
+    <footer class="bg-[#050A18] px-6 py-20 border-t border-[#D4AF37]/20 relative z-20">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             
             <!-- Kiri: Order Buttons & Social -->
             <div>
                 <h3 class="font-serif italic text-5xl mb-8">Order Now.</h3>
-                
-                <!-- App Buttons -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
                     <a href="https://wa.me/6281804043131" target="_blank" class="btn-app col-span-1 sm:col-span-2 bg-[#D4AF37] text-[#020617] border-[#D4AF37]">
                         <i class="fab fa-whatsapp text-lg"></i> WhatsApp Direct
@@ -218,59 +176,49 @@
                     </a>
                 </div>
 
-                <!-- Social Icons -->
                 <div class="flex gap-4">
-                    <a href="https://instagram.com/joycebarbali" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="https://facebook.com/JoyceBar" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://tiktok.com/@joycebar" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
 
-            <!-- Kanan: Lokasi & Map Kecil -->
+            <!-- Kanan: Lokasi & Map -->
             <div class="text-right flex flex-col items-end">
                 <h3 class="font-serif italic text-5xl mb-8">Visit Us.</h3>
                 <p class="text-sm opacity-70 mb-1">Jl. Diponegoro, Denpasar, Bali.</p>
                 <p class="text-sm opacity-70 mb-6 uppercase tracking-widest text-[#D4AF37]">Senin - Sabtu | 10.30 - 22.00</p>
                 
-                <!-- Kotak Kecil Maps -->
                 <div class="map-box rounded-sm overflow-hidden">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.331570773822!2d115.21528437582502!3d-8.659955391388047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2409748b9f041%3A0x633d453b3b42938!2sJl.%20Diponegoro%2C%20Dauh%20Puri%20Kaja%2C%20Kec.%20Denpasar%20Utara%2C%20Kota%20Denpasar%2C%20Bali!5e0!3m2!1sid!2sid!4v1715678234321!5m2!1sid!2sid" 
                         width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
                 </div>
-                <a href="https://maps.app.goo.gl/axWq39TST5ZJD9Ns5" target="_blank" class="mt-4 text-[10px] font-bold uppercase tracking-widest border-b border-[#D4AF37] pb-1 hover:text-[#D4AF37]">
+                <a href="https://maps.app.goo.gl/axWq39TST5ZJD9Ns5" target="_blank" class="mt-4 text-[10px] font-bold uppercase tracking-widest border-b border-[#D4AF37] pb-1">
                     Buka di Google Maps
                 </a>
             </div>
-
         </div>
-        
         <div class="text-center mt-20 pt-10 border-t border-white/5 opacity-30 text-[9px] uppercase tracking-[0.5em]">
             &copy; 2024 Joyce Bar Bali
         </div>
-    </section>
+    </footer>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
-
-        // Horizontal Scroll Logic
         let sections = gsap.utils.toArray(".menu-panel");
-
         gsap.to(sections, {
-            xPercent: -100 * (sections.length - 1), // Geser sejauh jumlah slide - 1
+            xPercent: -100 * (sections.length - 1),
             ease: "none",
             scrollTrigger: {
                 trigger: "#scroll-container",
-                pin: true, // Layar terkunci
-                scrub: 1,  // Halus mengikuti jari/mouse
-                snap: 1 / (sections.length - 1), // Otomatis pas di tengah gambar
-                // Durasi scroll = lebar container
+                pin: true,
+                scrub: 1,
                 end: () => "+=" + document.querySelector(".horizontal-wrapper").offsetWidth
             }
         });
     </script>
 </body>
 </html>
-
 
