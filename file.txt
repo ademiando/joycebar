@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOYCE BAR | Official Site</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,600&family=Plus+Jakarta+Sans:wght@300;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Scripts & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark: #020617;
+            --cream: #F4F1EA;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body { 
+            background-color: var(--dark); 
+            color: var(--cream); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow-x: hidden;
+        }
+        
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            background: linear-gradient(rgba(2, 6, 23, 0.6), rgba(2, 6, 23, 0.6)), 
+                        url('assets/background.jpg') center/cover no-repeat;
+        }
+
+        /* Horizontal Menu Section */
+        #horizontal-section {
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+            display: flex;
+        }
+
+        .menu-wrapper {
+            display: flex;
+            height: 100%;
+            will-change: transform;
+        }
+
+        .menu-item {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .menu-item img {
+            max-height: 85vh;
+            max-width: 90vw;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.9);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        /* Footer & Buttons */
+        .btn-order {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 1.2rem;
+            border: 1px solid var(--gold);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            width: 100%;
+        }
+
+        .btn-order:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 220px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            filter: grayscale(1) invert(0.9);
+            transition: 0.5s;
+        }
+        .map-container:hover { filter: none; invert: 0; }
+
+        .social-link {
+            font-size: 1.4rem;
+            transition: 0.3s;
+            color: white;
+            opacity: 0.5;
+        }
+        .social-link:hover { opacity: 1; color: var(--gold); transform: scale(1.2); }
+
+        .scroll-indicator {
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .scroll-indicator:hover { color: var(--gold); }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <nav class="fixed top-0 w-full z-[100] p-6 flex justify-between items-center mix-blend-difference">
+        <div>
+            <span class="text-2xl font-extrabold uppercase tracking-tighter text-white">Joyce<span class="text-[#D4AF37]">Bar</span></span>
+        </div>
+        <a href="https://wa.me/6281804043131" target="_blank" class="text-[10px] font-bold uppercase tracking-widest bg-white text-black px-5 py-2.5 rounded-full hover:bg-[#D4AF37] transition-colors">
+            WhatsApp
+        </a>
+    </nav>
+
+    <!-- 1. Hero -->
+    <section class="hero">
+        <div class="px-6">
+            <h1 class="font-serif italic text-6xl md:text-9xl mb-4 leading-none">Fresh & <br> <span class="text-[#D4AF37]">Tasty.</span></h1>
+            <p class="text-xs md:text-sm opacity-80 max-w-lg mx-auto leading-relaxed mb-12 uppercase tracking-[0.3em]">
+                Perpaduan rasa tradisional Persia dengan gaya hidup sehat modern di Bali.
+            </p>
+            <div class="scroll-indicator animate-bounce" onclick="scrollToMenu()">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Horizontal Menu -->
+    <div id="horizontal-section">
+        <div class="menu-wrapper">
+            <div class="menu-item"><img src="assets/menu1.jpg" alt="Menu 1"></div>
+            <div class="menu-item"><img src="assets/menu2.jpg" alt="Menu 2"></div>
+            <div class="menu-item"><img src="assets/menu3.jpg" alt="Menu 3"></div>
+            <div class="menu-item"><img src="assets/menu4.jpg" alt="Menu 4"></div>
+        </div>
+    </div>
+
+    <!-- 3. Footer -->
+    <footer class="bg-[#01040a] px-6 py-24 border-t border-white/5">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+            
+            <!-- Order -->
+            <div class="flex flex-col gap-8">
+                <h3 class="font-serif italic text-5xl">Order Now.</h3>
+                <div class="flex flex-col gap-4">
+                    <a href="https://wa.me/6281804043131" target="_blank" class="btn-order bg-[#D4AF37] text-black border-[#D4AF37]">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Order
+                    </a>
+                    <a href="https://gofood.co.id/bali/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-cdfef995-232d-42db-9f10-2c4cf897f8e8" target="_blank" class="btn-order">
+                        <i class="fas fa-motorcycle"></i> GoFood Bali
+                    </a>
+                    <a href="https://food.grab.com/id/en/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-delivery/6-C3LVRTVKSAUVEJ" target="_blank" class="btn-order">
+                        <i class="fas fa-bicycle"></i> GrabFood Bali
+                    </a>
+                </div>
+                <div class="flex gap-6 mt-4">
+                    <a href="https://instagram.com/joycebarbali" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/JoyceBar" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://tiktok.com/@joycebar" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Times -->
+            <div class="text-center md:pt-12">
+                <p class="text-[10px] uppercase tracking-[0.5em] text-[#D4AF37] mb-4">Jam Operasional</p>
+                <h4 class="font-serif italic text-4xl mb-2">Senin — Sabtu</h4>
+                <p class="text-xl font-light tracking-widest">10:30 — 22:00 WITA</p>
+                <p class="mt-8 text-[9px] opacity-30 uppercase tracking-[0.3em] leading-loose">
+                    Authentic Persian & Healthy Food<br>Denpasar, Bali
+                </p>
+            </div>
+
+            <!-- Map -->
+            <div class="flex flex-col items-end gap-6">
+                <h3 class="font-serif italic text-5xl w-full text-right">Location.</h3>
+                <div class="map-container overflow-hidden rounded-sm">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.331570773822!2d115.21528437582502!3d-8.659955391388047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2409748b9f041%3A0x633d453b3b42938!2sJl.%20Diponegoro%2C%20Dauh%20Puri%20Kaja%2C%20Kec.%20Denpasar%20Utara%2C%20Kota%20Denpasar%2C%20Bali!5e0!3m2!1sid!2sid!4v1715678234321!5m2!1sid!2sid" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+                <p class="text-[10px] opacity-50 text-right uppercase tracking-widest">Jl. Diponegoro, Denpasar Utara, Bali.</p>
+                <a href="https://maps.app.goo.gl/axWq39TST5ZJD9Ns5" target="_blank" class="text-[9px] font-bold uppercase tracking-widest border-b border-[#D4AF37] pb-1">
+                    Google Maps <i class="fas fa-external-link-alt ml-1"></i>
+                </a>
+            </div>
+
+        </div>
+        <div class="mt-32 text-center opacity-20 text-[8px] uppercase tracking-[0.8em]">
+            &copy; 2024 Joyce Bar Bali
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Fungsi Panah Bawah
+        function scrollToMenu() {
+            document.getElementById('horizontal-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.addEventListener('load', () => {
+            const wrapper = document.querySelector(".menu-wrapper");
+            const sections = gsap.utils.toArray(".menu-item");
+
+            // Animasi Scroll Horizontal
+            gsap.to(sections, {
+                xPercent: -100 * (sections.length - 1),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#horizontal-section",
+                    pin: true,
+                    scrub: 1,
+                    end: () => "+=" + wrapper.offsetWidth,
+                    invalidateOnRefresh: true
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
