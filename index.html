@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -50,7 +51,7 @@
             font-weight: 900;
         }
 
-        /* Menu Section - Editorial Style */
+        /* Editorial Sections */
         .editorial-section {
             min-height: 100vh;
             display: flex;
@@ -65,6 +66,7 @@
             height: 85vh;
             overflow: hidden;
             border-left: 1px solid var(--gold);
+            background: #111;
         }
 
         .image-container img {
@@ -76,14 +78,15 @@
 
         .content-overlay {
             width: 45vw;
-            padding-left: 5vw;
+            padding: 0 5vw;
             z-index: 10;
         }
 
-        /* Luxury Buttons */
+        /* Gold Luxury Buttons */
         .gold-btn {
             position: relative;
-            padding: 1rem 2rem;
+            display: inline-block;
+            padding: 1rem 2.5rem;
             border: 1px solid var(--gold);
             color: var(--gold);
             text-transform: uppercase;
@@ -91,6 +94,9 @@
             letter-spacing: 0.4em;
             transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             overflow: hidden;
+            background: transparent;
+            cursor: pointer;
+            text-decoration: none;
         }
 
         .gold-btn::before {
@@ -106,107 +112,109 @@
         .gold-btn:hover::before { left: 0; }
         .gold-btn:hover { color: #000; }
 
-        /* Floating Nav */
+        /* Navigation Dots */
         .float-nav {
             position: fixed;
-            left: 2rem;
+            right: 2rem;
             top: 50%;
             transform: translateY(-50%);
             z-index: 500;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .nav-link {
-            font-size: 0.6rem;
-            writing-mode: vertical-rl;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            opacity: 0.3;
-            transition: 0.3s;
+            width: 10px;
+            height: 10px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            transition: 0.4s;
+            cursor: pointer;
         }
 
-        .nav-link.active { opacity: 1; color: var(--gold); }
+        .nav-link.active {
+            background: var(--gold);
+            transform: scale(1.5);
+        }
 
-        /* Map Section */
+        /* Map styling */
         .map-wrapper {
             width: 100%;
-            height: 70vh;
-            background: #111;
+            height: 60vh;
+            border: 1px solid rgba(212, 175, 55, 0.2);
             position: relative;
-            border-top: 1px solid #222;
+            overflow: hidden;
         }
 
-        .map-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent, var(--black));
-            pointer-events: none;
+        .map-wrapper iframe {
+            filter: grayscale(1) invert(0.92) contrast(1.2);
         }
 
         @media (max-width: 1024px) {
-            .editorial-section { flex-direction: column; padding-top: 15vh; }
-            .image-container { width: 90vw; height: 60vh; }
-            .content-overlay { width: 90vw; padding: 2rem 0; }
+            .editorial-section { flex-direction: column !important; padding-top: 15vh; }
+            .image-container { width: 90vw; height: 60vh; order: 1 !important; }
+            .content-overlay { width: 90vw; padding: 4rem 0; order: 2 !important; text-align: left !important; }
             .hero-title { font-size: 18vw; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Loader -->
+    <!-- Preloader -->
     <div id="loader">
         <h2 class="serif-vogue text-4xl text-gold mb-4 overflow-hidden">
             <span class="inline-block transform translate-y-full italic">Joyce Bar</span>
         </h2>
-        <div class="w-12 h-[1px] bg-white/20 relative overflow-hidden">
+        <div class="w-16 h-[1px] bg-white/10 relative overflow-hidden">
             <div id="progress" class="absolute inset-0 bg-gold -translate-x-full"></div>
         </div>
     </div>
 
-    <!-- Floating Nav -->
-    <div class="float-nav hidden md:flex">
-        <span class="nav-link active">Entrance</span>
-        <span class="nav-link">Cuisine</span>
-        <span class="nav-link">Vibe</span>
-        <span class="nav-link">Location</span>
+    <!-- Right Side Nav -->
+    <div class="float-nav">
+        <div class="nav-link active" onclick="gsap.to(window, {scrollTo: '#entrance', duration: 1})"></div>
+        <div class="nav-link" onclick="gsap.to(window, {scrollTo: '#menu1', duration: 1})"></div>
+        <div class="nav-link" onclick="gsap.to(window, {scrollTo: '#menu2', duration: 1})"></div>
+        <div class="nav-link" onclick="gsap.to(window, {scrollTo: '#menu3', duration: 1})"></div>
+        <div class="nav-link" onclick="gsap.to(window, {scrollTo: '#menu4', duration: 1})"></div>
+        <div class="nav-link" onclick="gsap.to(window, {scrollTo: '#location', duration: 1})"></div>
     </div>
 
-    <!-- Top Info -->
-    <div class="fixed top-10 left-10 z-[100] mix-blend-difference">
-        <p class="text-[8px] tracking-[0.6em] uppercase opacity-60">Bali / Denpasar</p>
-    </div>
+    <!-- Static Header -->
+    <header class="fixed top-0 left-0 w-full p-8 z-[200] flex justify-between items-baseline mix-blend-difference">
+        <h2 class="text-2xl font-black tracking-tighter uppercase">Joyce<span class="text-gold">Bar</span></h2>
+        <p class="text-[9px] tracking-[0.6em] uppercase opacity-60 hidden md:block">Authentic Persian & Healthy</p>
+    </header>
 
-    <!-- Main Content -->
     <main id="main">
 
-        <!-- Section 1: Hero -->
+        <!-- Section 1: Entrance -->
         <section class="min-h-screen flex flex-col justify-center px-[10vw] relative" id="entrance">
-            <div class="absolute top-0 right-0 w-1/3 h-full opacity-20 pointer-events-none">
+            <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
                 <img src="assets/background.jpg" class="w-full h-full object-cover grayscale" alt="Interior">
             </div>
             
             <h1 class="hero-title">FRESH<br><span class="serif-vogue text-gold">Tasty.</span></h1>
             
             <div class="mt-12 flex flex-col md:flex-row gap-12 items-start md:items-center">
-                <p class="max-w-xs text-[10px] leading-relaxed tracking-widest uppercase opacity-40">
-                    Sebuah perjalanan rasa dari tanah Persia yang mendarat di pulau Dewata. Autentik, murni, dan mewah.
+                <p class="max-w-xs text-[9px] leading-relaxed tracking-[0.3em] uppercase opacity-40">
+                    Sebuah perpaduan murni antara tradisi kuliner Persia dengan gaya hidup sehat modern di Bali.
                 </p>
-                <button onclick="gsap.to(window, {scrollTo: '#menu1', duration: 1.5})" class="gold-btn">Explore Menu</button>
+                <button onclick="gsap.to(window, {scrollTo: '#menu1', duration: 1.5})" class="gold-btn">Lihat Menu</button>
             </div>
         </section>
 
         <!-- Section 2: Menu 1 -->
         <section class="editorial-section" id="menu1">
             <div class="image-container">
-                <img src="assets/menu1.jpg" alt="Persian Heritage" class="parallax-img">
+                <img src="assets/menu1.jpg" alt="Heritage" class="parallax-img">
             </div>
             <div class="content-overlay">
                 <span class="text-gold text-[10px] tracking-[0.8em] uppercase mb-6 block">01 — Heritage</span>
-                <h2 class="serif-vogue text-6xl md:text-8xl mb-8">The Persian <br> Soul.</h2>
-                <div class="h-[1px] w-20 bg-white/20 mb-8"></div>
-                <p class="text-xs opacity-40 leading-loose mb-10 max-w-sm">Daftar harga eksklusif untuk hidangan Western & Persian terbaik kami. Dibuat dengan rempah asli pilihan.</p>
+                <h2 class="serif-vogue text-6xl md:text-8xl mb-8">Western & <br> Persian.</h2>
+                <div class="h-[1px] w-20 bg-gold/50 mb-8"></div>
+                <p class="text-xs opacity-40 leading-loose mb-10 max-w-sm">Hidangan autentik Persia yang dipadukan dengan standar kuliner Western terbaik.</p>
                 <a href="https://wa.me/6281804043131" target="_blank" class="gold-btn">Order Direct</a>
             </div>
         </section>
@@ -215,81 +223,106 @@
         <section class="editorial-section" id="menu2">
             <div class="content-overlay md:text-right md:order-1">
                 <span class="text-gold text-[10px] tracking-[0.8em] uppercase mb-6 block">02 — Fusion</span>
-                <h2 class="serif-vogue text-6xl md:text-8xl mb-8">Indonesian <br> Elegance.</h2>
-                <div class="h-[1px] w-20 bg-white/20 mb-8 md:ml-auto"></div>
-                <p class="text-xs opacity-40 leading-loose mb-10 max-w-sm md:ml-auto">Sentuhan lokal dengan kualitas premium. Rasa Nusantara yang diangkat ke level berikutnya.</p>
-                <a href="https://gofood.co.id/bali/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-cdfef995-232d-42db-9f10-2c4cf897f8e8" target="_blank" class="gold-btn">GoFood Order</a>
+                <h2 class="serif-vogue text-6xl md:text-8xl mb-8">Indonesian <br> Delight.</h2>
+                <div class="h-[1px] w-20 bg-gold/50 mb-8 md:ml-auto"></div>
+                <p class="text-xs opacity-40 leading-loose mb-10 max-w-sm md:ml-auto">Cita rasa Nusantara yang kami sajikan dengan bahan-bahan organik dan sehat.</p>
+                <a href="https://gofood.co.id/bali/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-cdfef995-232d-42db-9f10-2c4cf897f8e8" target="_blank" class="gold-btn">GoFood Bali</a>
             </div>
             <div class="image-container md:order-2">
-                <img src="assets/menu2.jpg" alt="Indonesian Food" class="parallax-img">
+                <img src="assets/menu2.jpg" alt="Indonesian" class="parallax-img">
             </div>
         </section>
 
-        <!-- Section 4: Contact & Social -->
-        <section class="min-h-screen py-20 px-[10vw] flex flex-col justify-between" id="location">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+        <!-- Section 4: Menu 3 -->
+        <section class="editorial-section" id="menu3">
+            <div class="image-container">
+                <img src="assets/menu3.jpg" alt="Botanical" class="parallax-img">
+            </div>
+            <div class="content-overlay">
+                <span class="text-gold text-[10px] tracking-[0.8em] uppercase mb-6 block">03 — Botanical</span>
+                <h2 class="serif-vogue text-6xl md:text-8xl mb-8">Healthy <br> Snack.</h2>
+                <div class="h-[1px] w-20 bg-gold/50 mb-8"></div>
+                <p class="text-xs opacity-40 leading-loose mb-10 max-w-sm">Pilihan camilan sehat dan jus segar untuk melengkapi gaya hidup aktif Anda.</p>
+                <a href="https://food.grab.com/id/en/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-delivery/6-C3LVRTVKSAUVEJ" target="_blank" class="gold-btn">GrabFood Bali</a>
+            </div>
+        </section>
+
+        <!-- Section 5: Menu 4 -->
+        <section class="editorial-section" id="menu4">
+            <div class="content-overlay md:text-right md:order-1">
+                <span class="text-gold text-[10px] tracking-[0.8em] uppercase mb-6 block">04 — Refresh</span>
+                <h2 class="serif-vogue text-6xl md:text-8xl mb-8">Pure <br> Beverage.</h2>
+                <div class="h-[1px] w-20 bg-gold/50 mb-8 md:ml-auto"></div>
+                <p class="text-xs opacity-40 leading-loose mb-10 max-w-sm md:ml-auto">Minuman kesehatan dan kopi spesial untuk memulai hari Anda.</p>
+                <a href="https://wa.me/6281804043131" target="_blank" class="gold-btn">Order Now</a>
+            </div>
+            <div class="image-container md:order-2">
+                <img src="assets/menu4.jpg" alt="Beverage" class="parallax-img">
+            </div>
+        </section>
+
+        <!-- Section 6: Location & Connect -->
+        <section class="min-h-screen py-32 px-[10vw]" id="location">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mb-32">
                 <div>
-                    <h3 class="serif-vogue text-5xl text-gold mb-10">Connect With Us.</h3>
-                    <div class="flex flex-col gap-6">
-                        <a href="https://wa.me/6281804043131" target="_blank" class="group flex items-center justify-between py-4 border-b border-white/10">
-                            <span class="text-xs uppercase tracking-widest">WhatsApp Direct</span>
-                            <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                    <h3 class="serif-vogue text-6xl text-gold mb-12">Connect.</h3>
+                    <div class="flex flex-col gap-8">
+                        <a href="https://wa.me/6281804043131" target="_blank" class="group flex items-center justify-between py-6 border-b border-white/10 hover:border-gold transition-colors text-decoration-none">
+                            <span class="text-[10px] uppercase tracking-[0.4em] text-white">WhatsApp 0818-0404-3131</span>
+                            <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform text-gold"></i>
                         </a>
-                        <a href="https://instagram.com/joycebarbali" target="_blank" class="group flex items-center justify-between py-4 border-b border-white/10">
-                            <span class="text-xs uppercase tracking-widest">Instagram</span>
-                            <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                        <a href="https://instagram.com/joycebarbali" target="_blank" class="group flex items-center justify-between py-6 border-b border-white/10 hover:border-gold transition-colors text-decoration-none">
+                            <span class="text-[10px] uppercase tracking-[0.4em] text-white">Instagram @joycebarbali</span>
+                            <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform text-gold"></i>
                         </a>
-                        <a href="https://food.grab.com/id/en/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-delivery/6-C3LVRTVKSAUVEJ" target="_blank" class="group flex items-center justify-between py-4 border-b border-white/10">
-                            <span class="text-xs uppercase tracking-widest">GrabFood</span>
-                            <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
-                        </a>
+                        <div class="flex gap-10 mt-4">
+                            <a href="https://gofood.co.id/bali/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-cdfef995-232d-42db-9f10-2c4cf897f8e8" target="_blank" class="text-gold text-[10px] uppercase font-bold border-b border-gold/30 text-decoration-none">GoFood</a>
+                            <a href="https://food.grab.com/id/en/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-delivery/6-C3LVRTVKSAUVEJ" target="_blank" class="text-gold text-[10px] uppercase font-bold border-b border-gold/30 text-decoration-none">GrabFood</a>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="flex flex-col justify-center">
-                    <p class="text-[10px] text-gold uppercase tracking-[0.5em] mb-4 text-center">Opening Hours</p>
-                    <div class="text-center">
-                        <p class="serif-vogue text-4xl mb-2">Mon — Sat</p>
-                        <p class="text-2xl font-light tracking-widest opacity-60">10:30 — 22:00</p>
-                    </div>
+                <div class="flex flex-col justify-end text-right">
+                    <p class="text-[9px] text-gold uppercase tracking-[0.6em] mb-4">Location</p>
+                    <p class="serif-vogue text-3xl mb-4">Genteng Biru, Denpasar.</p>
+                    <p class="text-xs opacity-40 leading-relaxed mb-10">Pertokoan Genteng Biru, Denpasar Barat. <br> (Belakang Level 21 Mall)</p>
+                    <a href="https://maps.app.goo.gl/343w1F9K15P2fWjT7" target="_blank" class="gold-btn self-end">Get Directions</a>
                 </div>
             </div>
 
-            <div class="map-wrapper mt-20 overflow-hidden">
+            <!-- Google Maps Implementation: Joycebar, Genteng Biru -->
+            <div class="map-wrapper">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.331570773822!2d115.21528437582502!3d-8.659955391388047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2409748b9f041%3A0x633d453b3b42938!2sJl.%20Diponegoro%2C%20Dauh%20Puri%20Kaja%2C%20Kec.%20Denpasar%20Utara%2C%20Kota%20Denpasar%2C%20Bali!5e0!3m2!1sid!2sid!4v1715678234321!5m2!1sid!2sid" 
-                    width="100%" height="100%" style="border:0; filter: grayscale(1) invert(0.9);" allowfullscreen="" loading="lazy">
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.316885627197!2d115.2140816!3d-8.6613865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2409714856a93%3A0xc68291410427806d!2sJoycebar!5e0!3m2!1sid!2sid!4v1715678234321!5m2!1sid!2sid" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                 </iframe>
-                <div class="map-overlay"></div>
             </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="p-10 flex flex-col md:flex-row justify-between items-center opacity-20 text-[7px] tracking-[0.5em] uppercase border-t border-white/5">
-        <p>&copy; 2024 Joyce Bar Bali</p>
-        <p>Denpasar - North Bali - Persia - Healthy</p>
+    <footer class="p-12 flex flex-col md:flex-row justify-between items-center opacity-20 text-[7px] tracking-[0.8em] uppercase border-t border-white/5">
+        <p>&copy; 2024 Joyce Bar</p>
+        <p>Denpasar • Persian • Healthy</p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-        // Preloader Logic
+        // Preloader 
         window.addEventListener('load', () => {
             const tl = gsap.timeline();
-            tl.to("#progress", { x: "0%", duration: 1, ease: "power2.inOut" })
-              .to("#loader span", { y: "0%", duration: 0.8, ease: "power4.out" })
-              .to("#loader", { y: "-100%", duration: 1.2, ease: "power4.inOut", delay: 0.5 })
-              .from(".hero-title", { y: 200, skewY: 10, duration: 1.5, ease: "power4.out" }, "-=0.5")
-              .from(".gold-btn", { opacity: 0, duration: 1 }, "-=1");
+            tl.to("#progress", { x: "0%", duration: 1.2, ease: "power2.inOut" })
+              .to("#loader span", { y: "0%", duration: 1, ease: "power4.out" })
+              .to("#loader", { y: "-100%", duration: 1.5, ease: "power4.inOut", delay: 0.5 })
+              .from(".hero-title", { y: 200, skewY: 10, duration: 1.5, ease: "power4.out" }, "-=0.5");
         });
 
-        // Parallax & Smooth Reveal for Images
+        // Parallax Images & Reveal 
         gsap.utils.toArray(".parallax-img").forEach(img => {
             gsap.to(img, {
-                yPercent: -15,
+                yPercent: -20,
                 ease: "none",
                 scrollTrigger: {
                     trigger: img.parentElement,
@@ -299,28 +332,28 @@
 
             gsap.from(img.parentElement, {
                 width: 0,
-                duration: 1.5,
+                duration: 2,
                 ease: "power4.inOut",
                 scrollTrigger: {
                     trigger: img.parentElement,
-                    start: "top 80%"
+                    start: "top 85%"
                 }
             });
         });
 
-        // Nav Indicators
-        const sections = ['entrance', 'menu1', 'menu2', 'location'];
-        const navLinks = document.querySelectorAll('.nav-link');
+        // Navigation Active State Update
+        const sectionIds = ['entrance', 'menu1', 'menu2', 'menu3', 'menu4', 'location'];
+        const dots = document.querySelectorAll('.nav-link');
 
-        sections.forEach((id, i) => {
+        sectionIds.forEach((id, i) => {
             ScrollTrigger.create({
                 trigger: `#${id}`,
                 start: "top 50%",
                 end: "bottom 50%",
                 onToggle: self => {
                     if (self.isActive) {
-                        navLinks.forEach(l => l.classList.remove('active'));
-                        navLinks[i].classList.add('active');
+                        dots.forEach(d => d.classList.remove('active'));
+                        dots[i].classList.add('active');
                     }
                 }
             });
