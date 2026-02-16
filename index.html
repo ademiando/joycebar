@@ -82,6 +82,24 @@
             z-index: 10;
         }
 
+        /* Menu List Styling from Image */
+        .menu-list {
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            opacity: 0.6;
+        }
+
+        .menu-category {
+            color: var(--gold);
+            font-weight: 900;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
         /* Gold Luxury Buttons */
         .gold-btn {
             position: relative;
@@ -153,8 +171,8 @@
 
         @media (max-width: 1024px) {
             .editorial-section { flex-direction: column !important; padding-top: 15vh; }
-            .image-container { width: 90vw; height: 60vh; order: 1 !important; }
-            .content-overlay { width: 90vw; padding: 4rem 0; order: 2 !important; text-align: left !important; }
+            .image-container { width: 90vw; height: 50vh; order: 1 !important; }
+            .content-overlay { width: 90vw; padding: 3rem 0; order: 2 !important; text-align: left !important; }
             .hero-title { font-size: 18vw; }
         }
     </style>
@@ -201,11 +219,11 @@
                 <p class="max-w-xs text-[9px] leading-relaxed tracking-[0.3em] uppercase opacity-40">
                     Sebuah perpaduan murni antara tradisi kuliner Persia dengan gaya hidup sehat modern di Bali.
                 </p>
-                <button onclick="gsap.to(window, {scrollTo: '#menu1', duration: 1.5})" class="gold-btn">Lihat Menu</button>
+                <button onclick="gsap.to(window, {scrollTo: '#menu2', duration: 1.5})" class="gold-btn">Explore Indonesia</button>
             </div>
         </section>
 
-        <!-- Section 2: Menu 1 -->
+        <!-- Section 2: Menu 1 (Persian/Western) -->
         <section class="editorial-section" id="menu1">
             <div class="image-container">
                 <img src="assets/menu1.jpg" alt="Heritage" class="parallax-img">
@@ -219,17 +237,35 @@
             </div>
         </section>
 
-        <!-- Section 3: Menu 2 -->
+        <!-- Section 3: Menu 2 (Indonesia Food - Based on Uploaded Image) -->
         <section class="editorial-section" id="menu2">
             <div class="content-overlay md:text-right md:order-1">
                 <span class="text-gold text-[10px] tracking-[0.8em] uppercase mb-6 block">02 — Fusion</span>
-                <h2 class="serif-vogue text-6xl md:text-8xl mb-8">Indonesian <br> Delight.</h2>
+                <h2 class="serif-vogue text-6xl md:text-7xl mb-8">Indonesia <br> Food.</h2>
                 <div class="h-[1px] w-20 bg-gold/50 mb-8 md:ml-auto"></div>
-                <p class="text-xs opacity-40 leading-loose mb-10 max-w-sm md:ml-auto">Cita rasa Nusantara yang kami sajikan dengan bahan-bahan organik dan sehat.</p>
+                
+                <!-- Menu Items from Image -->
+                <div class="menu-list mb-10">
+                    <span class="menu-category">Nasi Goreng</span>
+                    <p>Mawut Joyce — 25K</p>
+                    <p>Vegetarian — 25K</p>
+                    <p>Premium — 30K</p>
+                    
+                    <span class="menu-category">Mie & Kwetiau</span>
+                    <p>Mie Goreng Sultan — 25K</p>
+                    <p>Kwetiau Royale Joyce — 25K</p>
+                    <p>Kwetiau Supreme Joyce — 30K</p>
+
+                    <span class="menu-category">Ayam Goreng</span>
+                    <p>Saus Lada Hitam — 25K</p>
+                    <p>Saus Asam Manis — 25K</p>
+                    <p>Saus BBQ — 25K</p>
+                </div>
+
                 <a href="https://gofood.co.id/bali/restaurant/joyce-bar-healthy-food-drink-juice-smoothies-salad-diponegoro-cdfef995-232d-42db-9f10-2c4cf897f8e8" target="_blank" class="gold-btn">GoFood Bali</a>
             </div>
             <div class="image-container md:order-2">
-                <img src="assets/menu2.jpg" alt="Indonesian" class="parallax-img">
+                <img src="assets/menu2.jpg" alt="Indonesian Menu" class="parallax-img">
             </div>
         </section>
 
@@ -286,14 +322,14 @@
                     <p class="text-[9px] text-gold uppercase tracking-[0.6em] mb-4">Location</p>
                     <p class="serif-vogue text-3xl mb-4">Genteng Biru, Denpasar.</p>
                     <p class="text-xs opacity-40 leading-relaxed mb-10">Pertokoan Genteng Biru, Denpasar Barat. <br> (Belakang Level 21 Mall)</p>
-                    <a href="https://maps.app.goo.gl/343w1F9K15P2fWjT7" target="_blank" class="gold-btn self-end">Get Directions</a>
+                    <a href="https://maps.app.goo.gl/XKNtjc36eVSX7Tsp9" target="_blank" class="gold-btn self-end">Get Directions</a>
                 </div>
             </div>
 
-            <!-- Google Maps Implementation: Joycebar, Genteng Biru -->
+            <!-- Google Maps Implementation: Joyce Bar, Genteng Biru -->
             <div class="map-wrapper">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.316885627197!2d115.2140816!3d-8.6613865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2409714856a93%3A0xc68291410427806d!2sJoycebar!5e0!3m2!1sid!2sid!4v1715678234321!5m2!1sid!2sid" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.3164923723377!2d115.21387677461946!3d-8.661413888145244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2409714856a93%3A0xc68291410427806d!2sJoycebar!5e0!3m2!1sid!2sid!4v1715678234321!5m2!1sid!2sid" 
                     width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
                 </iframe>
             </div>
